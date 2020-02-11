@@ -6,6 +6,8 @@
   }
 
   &__item {
+    align-items: center;
+    display: flex;
     line-height: 20px;
     margin: 5px 0;
     padding: 10px;
@@ -68,6 +70,7 @@
   }
 
   &__item-text {
+    flex: 1;
     transition: 0.2s opacity;
     vertical-align: middle;
   }
@@ -79,6 +82,19 @@
     &::after {
       animation: 1s infinite ellipsis;
       content: '';
+    }
+  }
+
+  &__delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+    opacity: 0.3;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
