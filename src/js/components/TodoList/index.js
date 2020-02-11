@@ -11,7 +11,10 @@ const TodoList = ({ items }) => (
       items.map(item =>
         <li
           key={item.id}
-          className={BEM('item', [item.importance])}>{item.title}</li>
+          className={BEM('item', [item.importance])}>
+          <input type="checkbox" className={BEM('checkbox')} />
+          <span className={BEM('item-text')}>{item.title}</span>
+        </li>
       )
     }
   </ul>

@@ -23,4 +23,50 @@
       border-left: 4px solid #B3E6FB;
     }
   }
+
+  &__checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 2px 5px 0px #8c8c8c;
+    cursor: pointer;
+    height: 20px;
+    margin-right: 10px;
+    position: relative;
+    vertical-align: middle;
+    width: 20px;
+
+    &:checked {
+      &::before,
+      &::after {
+        background-color: #000;
+        content: '';
+        display: block;
+        height: 3px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+      }
+
+      &::before {
+        transform: translate(-5px, -50%) rotate(-45deg);
+        width: 70%;
+      }
+
+      &::after {
+        transform: translate(-7px, 1px) rotate(45deg);
+        width: 30%;
+      }
+
+      & + span {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &__item-text {
+    transition: 0.2s opacity;
+    vertical-align: middle;
+  }
 }
