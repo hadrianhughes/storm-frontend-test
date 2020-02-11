@@ -12,8 +12,8 @@ const TodoList = ({ items }) => (
         <li
           key={item.id}
           className={BEM('item', [item.importance])}>
-          <input type="checkbox" className={BEM('checkbox')} />
-          <span className={BEM('item-text')}>{item.title}</span>
+          <input type="checkbox" className={BEM('checkbox')} id={item.id} />
+          <label className={BEM('item-text')} htmlFor={item.id}>{item.title}</label>
         </li>
       )
     }
