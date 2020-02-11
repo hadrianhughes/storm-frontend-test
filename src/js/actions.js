@@ -13,3 +13,8 @@ export const setFormOpen = open => ({
   type: 'SET_FORM_OPEN',
   open
 });
+
+export const setFormValue = value => ({
+  type: 'SET_FORM_VALUE',
+  value
+});
