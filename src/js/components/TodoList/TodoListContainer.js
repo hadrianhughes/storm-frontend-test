@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import TodoList from './index';
+import { API_ENDPOINT } from '../../config';
 
 const TodoListContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/task')
+    fetch(`${API_ENDPOINT}/task`)
       .then(response => response.json())
       .then(result => {
         if (result) {
@@ -17,7 +18,7 @@ const TodoListContainer = () => {
   const handleDone = e => {
     const { id, checked } = e.target;
 
-    fetch(`http://localhost:4000/api/task/${id}`, {
+    fetch(`${API_ENDPOINT}${id}`, {
       method: 'PATCH',
       body: JSON.stringify({ isDone: String(checked) }),
       headers: {
