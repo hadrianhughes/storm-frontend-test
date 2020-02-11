@@ -7,3 +7,9 @@ export const createBEM = block => (element, modifiers = []) => {
 
   return [firstClass, ...modifierClasses].join(' ');
 };
+
+export const sortByImportance = (a, b) => {
+  if (a.importance < b.importance) return -1;
+  if (a.importance > b.importance) return 1;
+  return 0;
+};
