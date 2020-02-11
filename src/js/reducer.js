@@ -11,11 +11,9 @@ const reducer = (state = initialState, action) => {
     case 'SET_LOADING':
       return { ...state, loading: action.value };
     case 'CHANGE_DONE':
-      const { items } = state;
-
       return {
         ...state,
-        items: items.reduce((acc, item) => [ ...acc, item.id === action.id ?
+        items: state.items.reduce((acc, item) => [ ...acc, item.id === action.id ?
           { ...item, isDone: String(action.isDone) }
           : item
         ], [])
@@ -30,6 +28,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, formImportance: action.value };
     case 'ADD_ITEM':
       return { ...state, items: [ ...state.items, action.newItem ] };
+    case 'DELETE_ITEM':
+      return { ...state, items: state.items.reduce((acc, item) =>
+        item.id === action.id ?
+          acc : [ ...acc, item ], [])
+      };
     default:
       return state;
   }

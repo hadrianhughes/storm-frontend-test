@@ -6,7 +6,8 @@ import { API_ENDPOINT } from '../../config';
 import {
   changeDone as changeDoneAction,
   setItems as setItemsAction,
-  setLoading as setLoadingAction
+  setLoading as setLoadingAction,
+  deleteItem as deleteItemAction
 } from '../../actions';
 
 const TodoListContainer = ({
@@ -14,7 +15,8 @@ const TodoListContainer = ({
   changeDone,
   setItems,
   loading,
-  setLoading
+  setLoading,
+  deleteItem
 }) => {
   useEffect(() => {
     fetch(`${API_ENDPOINT}/task`)
@@ -45,11 +47,24 @@ const TodoListContainer = ({
       });
   };
 
+  const handleDelete = id => () => {
+    fetch(`${API_ENDPOINT}/task/${id}`, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result === true) {
+          deleteItem(id);
+        }
+      });
+  };
+
   return (
     <TodoList
       items={items}
       onChangeDone={handleDone}
-      loading={loading} />
+      loading={loading}
+      onDelete={handleDelete} />
   );
 };
 
@@ -58,7 +73,8 @@ TodoListContainer.propTypes = {
   changeDone: PropTypes.func,
   setItems: PropTypes.func,
   loading: PropTypes.bool,
-  setLoading: PropTypes.func
+  setLoading: PropTypes.func,
+  deleteItem: PropTypes.func
 };
 
 TodoListContainer.defaultProps = {
@@ -66,7 +82,8 @@ TodoListContainer.defaultProps = {
   changeDone: () => {},
   setItems: () => {},
   loading: true,
-  setLoading: () => {}
+  setLoading: () => {},
+  deleteItem: () => {}
 };
 
 const mapStateToProps = state => ({
@@ -77,7 +94,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   changeDone: changeDoneAction,
   setItems: setItemsAction,
-  setLoading: setLoadingAction
+  setLoading: setLoadingAction,
+  deleteItem: deleteItemAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer);

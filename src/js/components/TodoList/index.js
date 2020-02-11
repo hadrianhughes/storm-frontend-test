@@ -5,7 +5,12 @@ import './TodoList.scss';
 
 const BEM = createBEM('List');
 
-const TodoList = ({ items, onChangeDone, loading }) => (
+const TodoList = ({
+  items,
+  onChangeDone,
+  loading,
+  onDelete
+}) => (
   <section className={BEM()}>
     {
       loading ?
@@ -26,6 +31,7 @@ const TodoList = ({ items, onChangeDone, loading }) => (
                     className={BEM('checkbox')}
                     id={item.id} />
                   <label className={BEM('item-text')} htmlFor={item.id}>{item.title}</label>
+                  <button className={BEM('delete')} onClick={onDelete(item.id)}>Delete</button>
                 </li>
             )
           }
@@ -43,13 +49,15 @@ TodoList.propTypes = {
     })
   ),
   onChangeDone: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  onDelete: PropTypes.func
 };
 
 TodoList.defaultProps = {
   items: [],
   onChangeDone: () => {},
-  loading: true
+  loading: true,
+  onDelete: () => {}
 };
 
 export default TodoList;
