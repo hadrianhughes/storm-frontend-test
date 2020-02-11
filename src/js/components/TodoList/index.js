@@ -5,10 +5,12 @@ import './TodoList.scss';
 
 const BEM = createBEM('List');
 
-const TodoList = ({ items, onChangeDone }) => (
+const TodoList = ({ items, onChangeDone, loading }) => (
   <section className={BEM()}>
     {
-      items.length > 0 ?
+      loading ?
+        <p className={BEM('loader')}>Loading</p>
+        :
         <ul className={BEM('list')}>
           {
             items
@@ -28,8 +30,6 @@ const TodoList = ({ items, onChangeDone }) => (
             )
           }
         </ul>
-        :
-        <p className={BEM('loader')}>Loading</p>
     }
   </section>
 );
@@ -42,11 +42,14 @@ TodoList.propTypes = {
       importance: PropTypes.number
     })
   ),
-  onChangeDone: PropTypes.func
+  onChangeDone: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 TodoList.defaultProps = {
-  items: []
+  items: [],
+  onChangeDone: () => {},
+  loading: true
 };
 
 export default TodoList;

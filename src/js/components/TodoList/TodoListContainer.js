@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TodoList from './index';
 import { API_ENDPOINT } from '../../config';
 import {
   changeDone as changeDoneAction,
-  setItems as setItemsAction
+  setItems as setItemsAction,
+  setLoading as setLoadingAction
 } from '../../actions';
 
-const TodoListContainer = ({ items, changeDone, setItems }) => {
+const TodoListContainer = ({
+  items,
+  changeDone,
+  setItems,
+  loading,
+  setLoading
+}) => {
   useEffect(() => {
     fetch(`${API_ENDPOINT}/task`)
       .then(response => response.json())
       .then(result => {
         if (result) {
           setItems(result);
+          setLoading(false);
         }
       });
   }, []);
@@ -39,17 +48,36 @@ const TodoListContainer = ({ items, changeDone, setItems }) => {
   return (
     <TodoList
       items={items}
-      onChangeDone={handleDone} />
+      onChangeDone={handleDone}
+      loading={loading} />
   );
 };
 
+TodoListContainer.propTypes = {
+  items: PropTypes.array,
+  changeDone: PropTypes.func,
+  setItems: PropTypes.func,
+  loading: PropTypes.bool,
+  setLoading: PropTypes.func
+};
+
+TodoListContainer.defaultProps = {
+  items: [],
+  changeDone: () => {},
+  setItems: () => {},
+  loading: true,
+  setLoading: () => {}
+};
+
 const mapStateToProps = state => ({
-  items: state.items
+  items: state.items,
+  loading: state.loading
 });
 
 const mapDispatchToProps = {
   changeDone: changeDoneAction,
-  setItems: setItemsAction
+  setItems: setItemsAction,
+  setLoading: setLoadingAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer);

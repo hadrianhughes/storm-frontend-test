@@ -28,3 +28,8 @@ export const addItem = newItem => ({
   type: 'ADD_ITEM',
   newItem
 });
+
+export const setLoading = value => ({
+  type: 'SET_LOADING',
+  value
+});

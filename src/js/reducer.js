@@ -1,4 +1,5 @@
 const initialState = {
+  loading: true,
   items: [],
   formOpen: false,
   formValue: '',
@@ -7,6 +8,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_LOADING':
+      return { ...state, loading: action.value };
     case 'CHANGE_DONE':
       const { items } = state;
 
