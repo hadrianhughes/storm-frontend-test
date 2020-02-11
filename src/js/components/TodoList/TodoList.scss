@@ -1,7 +1,9 @@
 .List {
-  list-style-type: none;
-  margin: 20px 0;
-  padding: 0;
+  &__list {
+    list-style-type: none;
+    margin: 20px 0;
+    padding: 0;
+  }
 
   &__item {
     line-height: 20px;

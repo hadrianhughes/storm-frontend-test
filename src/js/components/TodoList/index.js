@@ -6,10 +6,10 @@ import './TodoList.scss';
 const BEM = createBEM('List');
 
 const TodoList = ({ items, onChangeDone }) => (
-  <section>
+  <section className={BEM()}>
     {
       items.length > 0 ?
-        <ul className={BEM()}>
+        <ul className={BEM('list')}>
           {
             items.map(item =>
               <li
