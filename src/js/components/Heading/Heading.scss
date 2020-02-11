@@ -1,4 +1,7 @@
+@import '../../../css/settings.scss';
+@import '../../../css/tools.scss';
+
 .Heading {
   font-weight: normal;
-  padding-left: 20px;
+  padding-left: t-rem(20px);
 }

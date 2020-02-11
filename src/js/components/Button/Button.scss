@@ -1,12 +1,15 @@
+@import '../../../css/settings.scss';
+@import '../../../css/tools.scss';
+
 .Button {
   background: #fff;
   border: none;
-  border-radius: 20px;
+  border-radius: t-rem(20px);
   box-shadow: 0px 2px 5px 0px #afafaf;
   cursor: pointer;
-  font-size: 16px;
-  padding: 10px 20px;
-  padding-left: 40px;
+  font-size: t-rem(16px);
+  padding: t-rem(10px) t-rem(20px);
+  padding-left: t-rem(40px);
   position: relative;
 
   &:hover {
@@ -15,9 +18,9 @@
 
   &::before {
     content: '+';
-    font-size: 40px;
-    height: 20px;
-    left: 10px;
+    font-size: t-rem(40px);
+    height: t-rem(20px);
+    left: t-rem(10px);
     line-height: 0.3;
     position: absolute;
     top: 50%;

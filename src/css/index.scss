@@ -1,21 +1,24 @@
+@import './settings.scss';
+@import './tools.scss';
+
 html, body {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: $s-base-font-size;
   margin: 0;
 }
 
 #root {
   background-color: #fafafa;
   display: inline-block;
-  min-width: 400px;
-  padding: 0 20px;
+  min-width: t-rem(400px);
+  padding: 0 t-rem(20px);
 
   &::before,
   &::after {
     background-color: #000;
     content: '';
     display: block;
-    height: 5px;
+    height: t-rem(5px);
     width: 100%;
   }
 }
