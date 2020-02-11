@@ -97,11 +97,11 @@
     border: none;
     cursor: pointer;
     letter-spacing: 2px;
-    opacity: 0.3;
+    opacity: 1;
     text-transform: uppercase;
 
     &:hover {
-      opacity: 1;
+      opacity: 0.3;
     }
   }
 }
