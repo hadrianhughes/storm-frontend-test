@@ -1,0 +1,26 @@
+.Button {
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px 0px #afafaf;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  padding-left: 40px;
+  position: relative;
+
+  &:hover {
+    background: #fafafa;
+  }
+
+  &::before {
+    content: '+';
+    font-size: 40px;
+    height: 20px;
+    left: 10px;
+    line-height: 0.3;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

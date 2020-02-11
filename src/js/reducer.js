@@ -1,5 +1,6 @@
 const initialState = {
-  items: []
+  items: [],
+  formVisible: false
 };
 
 const reducer = (state = initialState, action) => {
