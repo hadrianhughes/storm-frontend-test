@@ -6,18 +6,25 @@ import './TodoList.scss';
 const BEM = createBEM('List');
 
 const TodoList = ({ items }) => (
-  <ul className={BEM()}>
+  <section>
     {
-      items.map(item =>
-        <li
-          key={item.id}
-          className={BEM('item', [item.importance])}>
-          <input type="checkbox" className={BEM('checkbox')} id={item.id} />
-          <label className={BEM('item-text')} htmlFor={item.id}>{item.title}</label>
-        </li>
-      )
+      items.length > 0 ?
+        <ul className={BEM()}>
+          {
+            items.map(item =>
+              <li
+                key={item.id}
+                className={BEM('item', [item.importance])}>
+                <input type="checkbox" className={BEM('checkbox')} id={item.id} />
+                <label className={BEM('item-text')} htmlFor={item.id}>{item.title}</label>
+              </li>
+            )
+          }
+        </ul>
+        :
+        <p className={BEM('loader')}>Loading</p>
     }
-  </ul>
+  </section>
 );
 
 TodoList.propTypes = {
