@@ -33,7 +33,6 @@ const FormContainer = ({
         .then(result => {
           if (result) {
             addItem(result);
-            setFormValue('');
           }
         });
     }

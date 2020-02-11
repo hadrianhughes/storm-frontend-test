@@ -29,11 +29,6 @@ export const addItem = newItem => ({
   newItem
 });
 
-export const setLoading = value => ({
-  type: 'SET_LOADING',
-  value
-});
-
 export const deleteItem = id => ({
   type: 'DELETE_ITEM',
   id

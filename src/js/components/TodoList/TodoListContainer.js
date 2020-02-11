@@ -6,7 +6,6 @@ import { API_ENDPOINT } from '../../config';
 import {
   changeDone as changeDoneAction,
   setItems as setItemsAction,
-  setLoading as setLoadingAction,
   deleteItem as deleteItemAction
 } from '../../actions';
 
@@ -15,7 +14,6 @@ const TodoListContainer = ({
   changeDone,
   setItems,
   loading,
-  setLoading,
   deleteItem
 }) => {
   useEffect(() => {
@@ -24,7 +22,6 @@ const TodoListContainer = ({
       .then(result => {
         if (result) {
           setItems(result);
-          setLoading(false);
         }
       });
   }, []);
@@ -94,7 +91,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   changeDone: changeDoneAction,
   setItems: setItemsAction,
-  setLoading: setLoadingAction,
   deleteItem: deleteItemAction
 };
 

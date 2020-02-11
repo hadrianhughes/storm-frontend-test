@@ -19,7 +19,11 @@ const reducer = (state = initialState, action) => {
         ], [])
       };
     case 'SET_ITEMS':
-      return { ...state, items: action.items };
+      return {
+        ...state,
+        items: action.items,
+        loading: false
+      };
     case 'SET_FORM_OPEN':
       return { ...state, formOpen: action.open };
     case 'SET_FORM_VALUE':
@@ -27,7 +31,12 @@ const reducer = (state = initialState, action) => {
     case 'SET_FORM_IMPORTANCE':
       return { ...state, formImportance: action.value };
     case 'ADD_ITEM':
-      return { ...state, items: [ ...state.items, action.newItem ] };
+      return {
+        ...state,
+        items: [ ...state.items, action.newItem ],
+        formValue: '',
+        formOpen: false
+      };
     case 'DELETE_ITEM':
       return { ...state, items: state.items.reduce((acc, item) =>
         item.id === action.id ?
