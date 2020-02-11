@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TodoList from './index';
-import { API_ENDPOINT } from '../../config';
+import { apiGetTasks, apiSetDone, apiDelete } from '../../api';
 import {
   changeDone as changeDoneAction,
   setItems as setItemsAction,
@@ -17,8 +17,7 @@ const TodoListContainer = ({
   deleteItem
 }) => {
   useEffect(() => {
-    fetch(`${API_ENDPOINT}/task`)
-      .then(response => response.json())
+    apiGetTasks()
       .then(result => {
         if (result) {
           setItems(result);
@@ -29,14 +28,7 @@ const TodoListContainer = ({
   const handleDone = e => {
     const { id, checked } = e.target;
 
-    fetch(`${API_ENDPOINT}/task/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ isDone: String(checked) }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
+    apiSetDone(id, checked)
       .then(result => {
         if (result && result.isDone === String(checked)) {
           changeDone(id, checked);
@@ -45,10 +37,7 @@ const TodoListContainer = ({
   };
 
   const handleDelete = id => () => {
-    fetch(`${API_ENDPOINT}/task/${id}`, {
-      method: 'DELETE'
-    })
-      .then(response => response.json())
+    apiDelete(id)
       .then(result => {
         if (result === true) {
           deleteItem(id);

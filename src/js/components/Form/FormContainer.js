@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Form from './index';
-import { API_ENDPOINT } from '../../config';
+import { apiSubmit } from '../../api';
 import {
   setFormValue as setFormValueAction,
   setFormImportance as setFormImportanceAction,
@@ -19,21 +19,9 @@ const FormContainer = ({
   const handleChangeValue = e => setFormValue(e.target.value);
   const handleChangeImportance = value => () => setFormImportance(value);
 
-  const handleSubmit = () => {
-    fetch(`${API_ENDPOINT}/task`, {
-      method: 'POST',
-      body: JSON.stringify({ title: value, importance }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result) {
-          addItem(result);
-        }
-      });
-  };
+  const handleSubmit = () =>
+    apiSubmit(value, importance)
+      .then(addItem);
 
   const handleKeyDown = e => {
     // On press enter
