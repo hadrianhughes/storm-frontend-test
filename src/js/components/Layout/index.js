@@ -5,15 +5,19 @@ import Heading from '../Heading';
 import TodoList from '../TodoList/TodoListContainer';
 import Button from '../Button';
 import { createBEM } from '../../utils';
+import { setFormOpen as setFormOpenAction } from '../../actions';
 import './Layout.scss';
 
 const BEM = createBEM('Layout');
 
-const Layout = ({ formVisible }) => (
+const Layout = ({ formOpen, setFormOpen }) => (
   <div className={BEM()}>
     <header className={BEM('header')}>
       <Heading text="Todo List" />
-      <Button text="Add item" onClick={() => console.log('clicked')} />
+      <Button
+        text={formOpen ? 'Close form' : 'Add item'}
+        closeVariant={formOpen}
+        onClick={() => setFormOpen(!formOpen)} />
     </header>
     <TodoList />
   </div>
@@ -28,7 +32,11 @@ Layout.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  formVisible: state.formVisible
+  formOpen: state.formOpen
 });
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = {
+  setFormOpen: setFormOpenAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

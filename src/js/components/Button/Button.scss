@@ -22,5 +22,10 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    transition: 0.2s transform;
+  }
+
+  &--close::before {
+    transform: translateY(-50%) rotate(45deg);
   }
 }

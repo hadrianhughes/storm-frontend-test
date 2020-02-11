@@ -1,6 +1,6 @@
 const initialState = {
   items: [],
-  formVisible: false
+  formOpen: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +17,8 @@ const reducer = (state = initialState, action) => {
       };
     case 'SET_ITEMS':
       return { ...state, items: action.items };
+    case 'SET_FORM_OPEN':
+      return { ...state, formOpen: action.open };
     default:
       return state;
   }
