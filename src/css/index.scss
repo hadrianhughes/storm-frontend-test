@@ -1,0 +1,21 @@
+html, body {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+#root {
+  background-color: #fafafa;
+  display: inline-block;
+  min-width: 400px;
+  padding: 0 20px;
+
+  &::before,
+  &::after {
+    background-color: #000;
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,26 @@
+.List {
+  list-style-type: none;
+  margin: 20px 0;
+  padding: 0;
+
+  &__item {
+    line-height: 20px;
+    margin: 5px 0;
+    padding: 10px;
+
+    &--0 {
+      background-color: #faebeb;
+      border-left: 4px solid #FBB3B3;
+    }
+
+    &--1 {
+      background-color: #fbf4dc;
+      border-left: 4px solid #FCE9A7;
+    }
+
+    &--2 {
+      background-color: #ebf6fa;
+      border-left: 4px solid #B3E6FB;
+    }
+  }
+}

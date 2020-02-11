@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createBEM } from '../../utils';
+import './TodoList.scss';
+
+const BEM = createBEM('List');
 
 const TodoList = ({ items }) => (
-  <ul className="List">
+  <ul className={BEM()}>
     {
       items.map(item =>
-        <li key={item.id} className="List__item">{item.title}</li>
+        <li
+          key={item.id}
+          className={BEM('item', [item.importance])}>{item.title}</li>
       )
     }
   </ul>
