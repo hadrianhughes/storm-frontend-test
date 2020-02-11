@@ -1,12 +1,17 @@
 import React, { Fragment } from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducer';
 import Heading from './components/Heading';
 import TodoList from './components/TodoList/TodoListContainer';
 
+const store = createStore(reducer);
+
 const App = () => (
-  <Fragment>
+  <Provider store={store}>
     <Heading text="Todo List" />
     <TodoList />
-  </Fragment>
+  </Provider>
 );
 
 export default App;
