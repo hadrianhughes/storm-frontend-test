@@ -23,3 +23,8 @@ export const setFormImportance = value => ({
   type: 'SET_FORM_IMPORTANCE',
   value
 });
+
+export const addItem = newItem => ({
+  type: 'ADD_ITEM',
+  newItem
+});

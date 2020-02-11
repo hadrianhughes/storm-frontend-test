@@ -25,6 +25,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, formValue: action.value };
     case 'SET_FORM_IMPORTANCE':
       return { ...state, formImportance: action.value };
+    case 'ADD_ITEM':
+      return { ...state, items: [ ...state.items, action.newItem ] };
     default:
       return state;
   }
