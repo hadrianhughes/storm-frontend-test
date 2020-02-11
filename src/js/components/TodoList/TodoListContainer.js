@@ -9,14 +9,26 @@ const TodoListContainer = () => {
       .then(response => response.json())
       .then(result => {
         if (result) {
-          console.log(result);
           setItems(result);
         }
       });
   }, []);
 
+  const handleDone = e => {
+    const { id, checked } = e.target;
+
+    setItems(
+      items.reduce((acc, item) => [
+        ...acc,
+        item.id === id ? { ...item, isDone: String(checked) } : item
+      ], [])
+    );
+  };
+
   return (
-    <TodoList items={items} />
+    <TodoList
+      items={items}
+      onChangeDone={handleDone} />
   );
 };
 

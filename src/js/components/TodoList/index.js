@@ -5,7 +5,7 @@ import './TodoList.scss';
 
 const BEM = createBEM('List');
 
-const TodoList = ({ items }) => (
+const TodoList = ({ items, onChangeDone }) => (
   <section>
     {
       items.length > 0 ?
@@ -15,7 +15,12 @@ const TodoList = ({ items }) => (
               <li
                 key={item.id}
                 className={BEM('item', [item.importance])}>
-                <input type="checkbox" className={BEM('checkbox')} id={item.id} />
+                <input
+                  type="checkbox"
+                  onChange={onChangeDone}
+                  checked={item.isDone === 'true'}
+                  className={BEM('checkbox')}
+                  id={item.id} />
                 <label className={BEM('item-text')} htmlFor={item.id}>{item.title}</label>
               </li>
             )
@@ -34,7 +39,8 @@ TodoList.propTypes = {
       title: PropTypes.string,
       importance: PropTypes.number
     })
-  )
+  ),
+  onChangeDone: PropTypes.func
 };
 
 TodoList.defaultProps = {
