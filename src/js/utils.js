@@ -1,6 +1,9 @@
 export const createBEM = block => (element, modifiers = []) => {
   const firstClass = element ? `${block}__${element}` : block;
-  const modifierClasses = modifiers.reduce((acc, modifier) => [
+  const modifierClasses =
+    modifiers
+      .filter(m => m !== null && m !== undefined)
+      .reduce((acc, modifier) => [
     ...acc,
     `${block}__${element}--${modifier}`
   ], []);

@@ -1,7 +1,8 @@
 const initialState = {
   items: [],
   formOpen: false,
-  formValue: ''
+  formValue: '',
+  formImportance: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +23,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, formOpen: action.open };
     case 'SET_FORM_VALUE':
       return { ...state, formValue: action.value };
+    case 'SET_FORM_IMPORTANCE':
+      return { ...state, formImportance: action.value };
     default:
       return state;
   }

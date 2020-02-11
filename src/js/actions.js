@@ -18,3 +18,8 @@ export const setFormValue = value => ({
   type: 'SET_FORM_VALUE',
   value
 });
+
+export const setFormImportance = value => ({
+  type: 'SET_FORM_IMPORTANCE',
+  value
+});

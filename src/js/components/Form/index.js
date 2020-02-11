@@ -5,29 +5,48 @@ import './Form.scss';
 
 const BEM = createBEM('Form');
 
-const Form = ({ value, onChangeValue }) => (
+const Form = ({
+  value,
+  onChangeValue,
+  importance,
+  onChangeImportance,
+  onKeyDown
+}) => (
   <section className={BEM()}>
     <input
       type="text"
       className={BEM('input')}
       value={value}
-      onChange={onChangeValue} />
+      onChange={onChangeValue}
+      onKeyDown={onKeyDown} />
     <div className={BEM('buttons')}>
-      <button className={BEM('button', [0])}>Most important</button>
-      <button className={BEM('button', [1])}>Semi important</button>
-      <button className={BEM('button', [2])}>Least important</button>
+      <button
+        onClick={onChangeImportance(0)}
+        className={BEM('button', [0, importance === 0 ? 'selected' : null])}>Most important</button>
+      <button
+        onClick={onChangeImportance(1)}
+        className={BEM('button', [1, importance === 1 ? 'selected' : null])}>Semi important</button>
+      <button
+        onClick={onChangeImportance(2)}
+        className={BEM('button', [2, importance === 2 ? 'selected' : null])}>Least important</button>
     </div>
   </section>
 );
 
 Form.propTypes = {
   value: PropTypes.string,
-  onChangeValue: PropTypes.func
+  onChangeValue: PropTypes.func,
+  importance: PropTypes.oneOf([0, 1, 2]),
+  onChangeImportance: PropTypes.func,
+  onKeyDown: PropTypes.func
 };
 
 Form.defaultProps = {
   value: '',
-  onChangeValue: () => {}
+  onChangeValue: () => {},
+  importance: 0,
+  onChangeImportance: () => {},
+  onKeyDown: () => {}
 };
 
 export default Form;
