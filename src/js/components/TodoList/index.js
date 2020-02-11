@@ -12,10 +12,16 @@ const TodoList = ({
   onDelete
 }) => (
   <section className={BEM()}>
-    {
-      loading ?
-        <p className={BEM('loader')}>Loading</p>
-        :
+    {(() => {
+      if (loading) {
+        return <p className={BEM('loader')}>Loading</p>;
+      }
+
+      if (items.length === 0) {
+        return <p className={BEM('no-items')}>No items to show</p>;
+      }
+
+      return (
         <ul className={BEM('list')}>
           {
             items
@@ -36,7 +42,8 @@ const TodoList = ({
             )
           }
         </ul>
-    }
+      );
+    })()}
   </section>
 );
 
