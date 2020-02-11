@@ -31,4 +31,12 @@
   &--close::before {
     transform: translateY(-50%) rotate(45deg);
   }
+
+  &--no-icon {
+    padding-left: t-rem(20px);
+
+    &::before {
+      display: none;
+    }
+  }
 }

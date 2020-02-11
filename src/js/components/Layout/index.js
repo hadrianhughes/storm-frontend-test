@@ -17,7 +17,7 @@ const Layout = ({ formOpen, setFormOpen }) => (
       <Heading text="Todo List" />
       <Button
         text={formOpen ? 'Close form' : 'Add item'}
-        closeVariant={formOpen}
+        variant={formOpen ? 'close' : ''}
         onClick={() => setFormOpen(!formOpen)} />
     </header>
     <main>

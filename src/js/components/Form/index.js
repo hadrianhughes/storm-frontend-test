@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createBEM } from '../../utils';
+import Button from '../Button';
 import './Form.scss';
 
 const BEM = createBEM('Form');
@@ -10,7 +11,8 @@ const Form = ({
   onChangeValue,
   importance,
   onChangeImportance,
-  onKeyDown
+  onKeyDown,
+  onSubmit
 }) => (
   <section className={BEM()}>
     <input
@@ -30,6 +32,7 @@ const Form = ({
         onClick={onChangeImportance(2)}
         className={BEM('button', [2, importance === 2 ? 'selected' : null])}>Least important</button>
     </div>
+    <Button text="Submit" onClick={onSubmit} variant="no-icon" />
   </section>
 );
 
@@ -38,7 +41,8 @@ Form.propTypes = {
   onChangeValue: PropTypes.func,
   importance: PropTypes.oneOf([0, 1, 2]),
   onChangeImportance: PropTypes.func,
-  onKeyDown: PropTypes.func
+  onKeyDown: PropTypes.func,
+  onSubmit: PropTypes.func
 };
 
 Form.defaultProps = {
@@ -46,7 +50,8 @@ Form.defaultProps = {
   onChangeValue: () => {},
   importance: 0,
   onChangeImportance: () => {},
-  onKeyDown: () => {}
+  onKeyDown: () => {},
+  onSubmit: () => {}
 };
 
 export default Form;

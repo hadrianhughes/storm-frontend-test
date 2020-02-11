@@ -19,22 +19,26 @@ const FormContainer = ({
   const handleChangeValue = e => setFormValue(e.target.value);
   const handleChangeImportance = value => () => setFormImportance(value);
 
+  const handleSubmit = () => {
+    fetch(`${API_ENDPOINT}/task`, {
+      method: 'POST',
+      body: JSON.stringify({ title: value, importance }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result) {
+          addItem(result);
+        }
+      });
+  };
+
   const handleKeyDown = e => {
     // On press enter
     if (e.keyCode === 13) {
-      fetch(`${API_ENDPOINT}/task`, {
-        method: 'POST',
-        body: JSON.stringify({ title: value, importance }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(result => {
-          if (result) {
-            addItem(result);
-          }
-        });
+      handleSubmit();
     }
   };
 
@@ -44,7 +48,8 @@ const FormContainer = ({
       onChangeValue={handleChangeValue}
       importance={importance}
       onChangeImportance={handleChangeImportance}
-      onKeyDown={handleKeyDown} />
+      onKeyDown={handleKeyDown}
+      onSubmit={handleSubmit} />
   );
 };
 
