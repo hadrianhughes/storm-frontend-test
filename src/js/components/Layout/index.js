@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Heading from '../Heading';
 import TodoList from '../TodoList/TodoListContainer';
 import Button from '../Button';
+import Form from '../Form/FormContainer';
 import { createBEM } from '../../utils';
 import { setFormOpen as setFormOpenAction } from '../../actions';
 import './Layout.scss';
@@ -19,7 +20,15 @@ const Layout = ({ formOpen, setFormOpen }) => (
         closeVariant={formOpen}
         onClick={() => setFormOpen(!formOpen)} />
     </header>
-    <TodoList />
+    <main>
+      {
+        formOpen ?
+          <Form />
+          :
+          null
+      }
+      <TodoList />
+    </main>
   </div>
 );
 

@@ -1,0 +1,40 @@
+.Form {
+  display: flex;
+  padding: 0 10px;
+
+  &__input {
+    border: 1px solid #bfbfbf;
+    border-radius: 20px;
+    flex: 1;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  &__buttons {
+    align-items: center;
+    display: flex;
+    margin-left: 5px;
+  }
+
+  &__button {
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 30px;
+    margin: 0 2px;
+    text-indent: -9999px;
+    width: 30px;
+
+    &--0 {
+      background-color: #F5B3B3;
+    }
+
+    &--1 {
+      background-color: #FAE9A7;
+    }
+
+    &--2 {
+      background-color: #B3E6FB;
+    }
+  }
+}
